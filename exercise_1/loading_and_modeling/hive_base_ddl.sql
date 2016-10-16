@@ -63,26 +63,26 @@ communication_nurses_dimension VARCHAR(15),
 communication_doctors_achievement VARCHAR(15),
 communication_doctors_improvement VARCHAR(15),
 communication_doctors_dimension VARCHAR(15),
-responsiveness_hosp_staff_achivement VARCHAR(15),
+responsiveness_hosp_staff_achievement VARCHAR(15),
 responsiveness_hosp_staff_improvement VARCHAR(15),
 responsiveness_hosp_staff_dimension VARCHAR(15),
-pain_management_achivement VARCHAR(15),
+pain_management_achievement VARCHAR(15),
 pain_management_improvement VARCHAR(15),
 pain_management_dimension VARCHAR(15),
-communication_about_medicines_achivement VARCHAR(15),
+communication_about_medicines_achievement VARCHAR(15),
 communication_about_medicines_improvement VARCHAR(15),
 communication_about_medicines_dimension VARCHAR(15),
-cleanliness_and_quietness_achivement VARCHAR(15),
+cleanliness_and_quietness_achievement VARCHAR(15),
 cleanliness_and_quietness_improvement VARCHAR(15),
 cleanliness_and_quietness_dimension VARCHAR(15),
-discharge_information_achivement VARCHAR(15),
+discharge_information_achievement VARCHAR(15),
 discharge_information_improvement VARCHAR(15),
 discharge_information_dimension VARCHAR(15),
-overall_achivement VARCHAR(15),
+overall_achievement VARCHAR(15),
 overall_improvement VARCHAR(15),
 overall_dimension VARCHAR(15),
-hcaps_base VARCHAR(15),
-hcaps_consitency VARCHAR(15)
+hcahps_base VARCHAR(15),
+hcahps_consistency VARCHAR(15)
 )
 ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
 WITH SERDEPROPERTIES (
@@ -92,6 +92,9 @@ WITH SERDEPROPERTIES (
 )
 STORED AS TEXTFILE
 LOCATION '/user/w205/hospital_compare/survey_responses';
+
+
+
 
 
 
