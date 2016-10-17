@@ -1,18 +1,26 @@
-Readme:
+Exercise 1:
 
 1. loading_and_modeling
-	includes ER Diagram as well as the two files for downloading the file, cleaning it, and putting it into hdfs and then setting up a database to examine the results.
+```
+/loading_and_modeling/ER Diagram.png - ER Diagram
+/loading_and_modeling/load_data_lake.sh - loads and unzips files
+/loading_and_modeling/hive_base_ddl.sql - cleans files and puts them into hdfs
+```
 
 2. transforming
-Main transformations
-### /transforming
-	survey_results, readmissions, and effective care: change results to ints and floats where appropriate
+```
+/transforming/
+```
+t_effective_care.sql, t_readmissions.sql, t_survey_responses.sql - mostly changes of strings to ints and floats and dropping of unecessary fields
 	
 3. investigations
 best_hospitals/best_hospitals.sql
-## A Best Hospitals
-### For mortality and readmissions I split the measures into one of those categories and then took an average of the scores within each. I then combined them into an aggregate score weight 2x more on the mortality side when both scores are available. From the care table, I also averaged scores into conditions and then combined those into a single score. Finally I combined the average of the overall data from the survey. With these three measures, I combined and reranked them giving me the order of hospitals from best (1) to worst.
 
+# A Best Hospitals
+`best_hospitals/best_hospitals.sql`
+For mortality and readmissions I split the measures into one of those categories and then took an average of the scores within each. I then combined them into an aggregate score weight 2x more on the mortality side when both scores are available. From the care table, I also averaged scores into conditions and then combined those into a single score. Finally I combined the average of the overall data from the survey. With these three measures, I combined and reranked them giving me the order of hospitals from best (1) to worst.
+
+```
 name, final_rank (avg of: survey_rank, effective_care_rank, readmissions_and_mortality_rank)
 
 KANSAS SURGERY & RECOVERY CENTER        7.0     12      4       5
@@ -25,12 +33,13 @@ HOLLAND COMMUNITY HOSPITAL      174.33333333333334      180     46      297
 MIAMI COUNTY MEDICAL CENTER     176.33333333333334      59      137     333
 KAISER FOUNDATION HOSPITAL - ROSEVILLE  179.66666666666666      180     47      312
 KANSAS MEDICAL CENTER LLC       184.0   138     32      382
+```
 
-
-## B Best States
-### best_states/best_states.sql
+# B Best States
+`best_states/best_states.sql`
 To compare states, I aggregated the hospital ratings by state and then sorted them by aggregate rank (less is better). CO, WI, NH, and ME are the top rates, while DC, WV, WY, and AR are the worst.
 
+```
 State, Rank, Survey, Effective Care, Readmissions & Mortality
 CO      1       1004.9242424242424      924.2272727272727       921.0   1169.5454545454545
 WI      2       1013.8410256410255      904.8461538461538       745.0153846153846       1391.6615384615384
@@ -82,15 +91,16 @@ DC      47      1855.5238095238096      2012.857142857143       2045.0  1508.714
 WV      48      1902.0714285714282      1640.25 2047.4285714285713      2018.5357142857142
 WY      49      1913.7000000000003      1747.4  1859.1  2134.6
 AR      50      1943.6136363636358      1444.3863636363637      1908.840909090909       2477.6136363636365
-
+```
 
 
 ## C Hospital Variability
-### hospital_variability/hospital_variability.sql
+`hospital_variability/hospital_variability.sql`
 To compare the variability of hospitals, I chose to look at the differences between rankings within each state. I found the first and third quartile rankings and looked at the range between them and then sorted the states from greatest to least (most volatile to least). 
 
-I expected larger states to rank highest, however, DC and HI ranked higher than TX. Also, volatility and quality didn't correlate. SD is ranked #6 as a state but has a very wide range, while WY is ranked 49th and has a very small range.
+I expected larger states to rank highest, however, DC and HI ranked higher than TX. Also, volatility and quality didn't correlate. SD is ranked 6 as a state but has a very wide range, while WY is ranked 49th and has a very small range.
 
+```
 state	range	min_score	max_score	overall_state_rank
 ND      1416.0  784.3333333333334       2200.3333333333335      13
 SD      1100.3333333333335      558.6666666666666       1659.0  6
@@ -142,19 +152,17 @@ ID      541.0   1179.6666666666667      1720.6666666666667      20
 CO      519.3333333333334       759.6666666666666       1279.0  1
 NV      480.0   1488.6666666666667      1968.6666666666667      38
 WY      458.0   1725.0  2183.0  49
+```
+# D Hospitals & Patients:
+`/investigations/hospitals_and_patients.sql`
 
-
-
-
-
-## D Hospitals & Patients:
-### /investigations/hospitals_and_patients.sql
-
+```
 Survey Quartile, Survey Avg, Mortality Avg Rank
 1       96.9693290973953        1665.8006453694738
 2       94.64619997070606       1644.0576550387595
 3       92.40944665019562       1674.4456233850144
 4       81.07748490577389       1902.3160045219631
+```
 
 While a small drop in the survey correlates with a small drop in the average rankings for mortality-related measures and a big drop has a much bigger drop for mortality measures as well. This supports the idea that hospitals that treat patients better and have better communication are less likely to have fatalities. 
 
