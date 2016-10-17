@@ -1,0 +1,1 @@
+To look at hospital variability, we just need to measure the difference between the top 16% and bottom 16% of hospitals within each state, that way we remove the outliers. The states with the greatest difference have the biggest variability.
