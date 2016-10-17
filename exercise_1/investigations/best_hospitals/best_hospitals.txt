@@ -1,0 +1,18 @@
+Methodology - find best hospitals ranked by readmissions
+1. rank each hospital by measure_id.
+(measures without scores are dropped)
+
+2. get average of ranks for mortality and for readmission. 
+(I thought about requiring a minimum amount here, but given the volume requirements to even have one category ranked, I figured just one would be enough)
+
+3. get final scores as a weighted comination of the two ranks 
+when both available: avg(readmission rank + 2x mortality rank) - since mortality is should count for more. 
+if not: just use the one we have
+
+This gives a balance of all three parts -- mortality and readmission, timely and effective care, and survey feedback. 
+For mortality, it's hard to come up with a clear score, since the ranges vary measure to measure so instead I just 
+used ranks and averages of ranks over conditions. Which works well when the task is to get ratings. 
+For care, I mostly used scores and then scaled wait times to follow a similar scale so we could compare the ratings. 
+There were so many 100's that a 99 could mean a drop to 600 in rankings, which is too much a spread.
+For the surveys, I just used the aggregated fields as they covered and represented all the other columns except the last two,
+which were a different aggregate.
