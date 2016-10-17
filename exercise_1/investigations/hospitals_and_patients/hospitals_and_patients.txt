@@ -1,0 +1,4 @@
+Do hospitals who rank highly on surveys have lower mortality rates?
+To check, let's break up the hospitals into quartiles based on survey scores and then compare their mortality numbers.
+
+As the average rating for survey scores drops, as does the hospitals rating for having less deaths. See readme for full details and table.
