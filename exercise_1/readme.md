@@ -1,22 +1,22 @@
-Exercise 1:
+# Exercise 1:
 
-1. loading_and_modeling
+## 1. loading_and_modeling
 ```
 /loading_and_modeling/ER Diagram.png - ER Diagram
 /loading_and_modeling/load_data_lake.sh - loads and unzips files
 /loading_and_modeling/hive_base_ddl.sql - cleans files and puts them into hdfs
 ```
 
-2. transforming
+## 2. transforming
 ```
 /transforming/
 ```
 t_effective_care.sql, t_readmissions.sql, t_survey_responses.sql - mostly changes of strings to ints and floats and dropping of unecessary fields
-	
-3. investigations
+
+## 3. investigations
 best_hospitals/best_hospitals.sql
 
-# A Best Hospitals
+### A Best Hospitals
 `best_hospitals/best_hospitals.sql`
 For mortality and readmissions I split the measures into one of those categories and then took an average of the scores within each. I then combined them into an aggregate score weight 2x more on the mortality side when both scores are available. From the care table, I also averaged scores into conditions and then combined those into a single score. Finally I combined the average of the overall data from the survey. With these three measures, I combined and reranked them giving me the order of hospitals from best (1) to worst.
 
@@ -35,7 +35,7 @@ KAISER FOUNDATION HOSPITAL - ROSEVILLE  179.66666666666666      180     47      
 KANSAS MEDICAL CENTER LLC       184.0   138     32      382
 ```
 
-# B Best States
+### B Best States
 `best_states/best_states.sql`
 To compare states, I aggregated the hospital ratings by state and then sorted them by aggregate rank (less is better). CO, WI, NH, and ME are the top rates, while DC, WV, WY, and AR are the worst.
 
@@ -94,7 +94,7 @@ AR      50      1943.6136363636358      1444.3863636363637      1908.84090909090
 ```
 
 
-## C Hospital Variability
+### C Hospital Variability
 `hospital_variability/hospital_variability.sql`
 To compare the variability of hospitals, I chose to look at the differences between rankings within each state. I found the first and third quartile rankings and looked at the range between them and then sorted the states from greatest to least (most volatile to least). 
 
@@ -153,7 +153,7 @@ CO      519.3333333333334       759.6666666666666       1279.0  1
 NV      480.0   1488.6666666666667      1968.6666666666667      38
 WY      458.0   1725.0  2183.0  49
 ```
-# D Hospitals & Patients:
+### D Hospitals & Patients:
 `/investigations/hospitals_and_patients.sql`
 
 ```
