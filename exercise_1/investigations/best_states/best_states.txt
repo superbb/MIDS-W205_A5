@@ -1,0 +1,1 @@
+To get the best states, we can just aggregate the preliminary hospital scores per state, and then rank the same way we did the hospitals.
